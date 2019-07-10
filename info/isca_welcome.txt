@@ -1,0 +1,21 @@
+#                                  Isca
+#                         Nathanael Wong Zhixin
+#
+# Isca is framework for the idealized modelling of the global circulation
+# of planetary atmospheres at varying levels of complexity and realism.
+# This MATLAB package is designed to allow for the resort and compilation
+# of Isca model output data for easier analysis.  However, the specific
+# needs of the individual will vary for different experiments, and
+# therefore this package is only meant as a first step basic analysis of
+# various statistics such as mean and standard deviation.
+#
+# The true purpose of this code lies in file handling of data for different
+# model runs for various experiments, and in calculating variables such as
+# streamfunctions, momentum fluxes and transient eddies.
+#
+# The analysis of Isca requires certain MATLAB toolboxes, as listed below:
+# - M_Map (see https://www.eoas.ubc.ca/~rich/map.html)
+# - Statistics and Machine Learning Toolbox (MATLAB)
+# - Image Processing Toolbox (MATLAB)
+# - Financial Instruments Toolbox (MATLAB)
+# - Parallel Computing Toolbox (MATLAB) | Optional
