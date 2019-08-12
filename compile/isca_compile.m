@@ -6,6 +6,7 @@ function isca_compile (parvec,root)
 
 fprintf('COMPILING ISCA OUTPUT DATA ...\n');
 if nargin == 1, root = isca_root; end; spin = isca_spin(root);
+load([root.out '/isca_info.mat'],'tstp');
 
 for ii = parvec, par = isca_par(ii);
     
@@ -21,15 +22,8 @@ for ii = parvec, par = isca_par(ii);
         else, par.lvl = [ par.name '-sig' num2str(jj,'%02d') ];
             root.var  = [ root.out '/' par.name '/' par.lvl ];
         end
-        cd(root.var); fnc = dir('*.nc'); cd(root.out);
-        
-        l = length(fnc);
-        tic
-        for kk = 1 : l
-            [ isca(kk).yr,isca(kk).ss,isca(kk).mo ] = ...
-                isca_compile_extract(fnc,par,root,spin,kk);
-        end
-        t(1) = toc;
+        cd(root.var); fnc = dir('*.nc'); cd(root.out); l = length(fnc);
+        tic; isca = isca_compile_extract(fnc,par,root,spin,tstp); t(1) = toc;
         
         cd(root.out);
         

@@ -15,13 +15,14 @@ nlon = info.Variables(1).Size; ncvar.lon  = ncread(name,'lon');
 nlat = info.Variables(3).Size; ncvar.lat  = ncread(name,'lat');
 nstp = info.Variables(5).Size; ncvar.pre  = ncread(name,'pfull');
 dim  = [nlon nlat nstp];       ncvar.dim  = dim;
+tstp = isca_time;
 
 %% Begin Resort
 for yr = 1 : ndir, cd([ root.raw '/' dinfo(yr).name]);
     
     for jj = parvec, par = isca_par(jj); t = zeros(1,2);
         
-        tic; var = isca_resort_extract(par,ncvar);  t(1) = toc;
+        tic; var = isca_resort_extract(par,ncvar,tstp);        t(1) = toc;
         tic;       isca_resort_ncsave (par,ncvar,yr,root,var); t(2) = toc;
         
         fprintf ([ 'RESORTED DATA FOR VARIABLE: %s, YEAR: %d | ' ...
@@ -35,7 +36,7 @@ for yr = 1 : ndir, cd([ root.raw '/' dinfo(yr).name]);
 end
 
 lon = ncvar.lon; lat = ncvar.lat; pre = ncvar.pre;
-save([root.out '/isca_info.mat'],'lon','lat','pre');
+save([root.out '/isca_info.mat'],'lon','lat','pre','tstp');
 
 cd(root.home);
 

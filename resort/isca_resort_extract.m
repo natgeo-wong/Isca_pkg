@@ -1,8 +1,8 @@
-function data = isca_resort_extract(par,ncvar)
+function data = isca_resort_extract(par,ncvar,tstp)
 
 
 
-data = ncread('atmos_daily.nc',par.isca); pre = ncvar.pre;
+data = ncread(['atmos_' tstp '.nc'],par.isca); pre = ncvar.pre;
 
 if ~isca_par_is(par,'sfc')
     lvl = isca_pre2lvl(par,pre); data = data(:,:,lvl,:);
